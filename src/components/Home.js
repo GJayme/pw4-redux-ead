@@ -1,8 +1,8 @@
 export function Home() {
-    return(
+    return (
         <div>
             <h4>Componente Home</h4>
             <p>...loren Ipsun...</p>
         </div>
-    )
+    );
 }
