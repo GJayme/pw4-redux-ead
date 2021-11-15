@@ -1,53 +1,51 @@
 import {BrowserRouter as Router, Routes, Route, Link} from 'react-router-dom';
 
-import {Home} from './components/Home';
-import {Contato} from './components/Contato';
-import {Sobre} from './components/Sobre';
+import {Depositar} from './components/Depositar';
+import {Retirar} from './components/Retirar';
 
 import {connect} from 'react-redux';
-import {botaoIncrementa, botaoMensagem} from './actions';
+import {botaoDepositaValor, botaoRetirarValor} from './actions';
 import {bindActionCreators} from 'redux';
+import {Home} from './components/Home';
 
-// import './App.css';
+import './App.css';
 
 const mapStateToProps = store => ({
-    contagem: store.contador.contagem,
-    mensagem: store.contador.mensagem
+    saldo: store.contador.saldo
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators(
-    {botaoIncrementa, botaoMensagem}, dispatch
+    {botaoDepositaValor, botaoRetirarValor}, dispatch
 );
 
 function App(props) {
     return (
-
-        <div>
-            <h1>EAD React Router com Redux</h1>
-            <p>Saldo atual: {props.contagem}</p>
-            <br/>
-            <button onClick={() => props.botaoIncrementa()}>Incrementar Contagem</button>
-            <br/>
-            {props.mensagem}
-            <br/>
-            <button onClick={() => props.botaoMensagem('Nova mensagem via Redux')}>Atualizar Mensagem</button>
-        </div>
-        // <Router>
-        //     <div className="App">
-        //         <h1>EAD React Router com Redux</h1>
-        //         <p>Saldo atual: xxx</p>
-        //         <Link to="/">Home</Link> |
-        //         <Link to="/sobre">Sobre</Link> |
-        //         <Link to="contato">Contato</Link> |
-        //
-        //         <Routes>
-        //             <Route exact path="/" element={<Home/>}/>
-        //             <Route path="/sobre" element={<Sobre/>}/>
-        //             <Route path="/contato" element={<Contato/>}/>
-        //         </Routes>
-        //     </div>
-        // </Router>
+        <Router>
+            <div className="App">
+                <h1>EAD React-Router com Redux</h1>
+                <h3>Saldo:{props.saldo}</h3>
+                <Link to="/depositar">Depositar</Link> |
+                <Link to="/retirar">Retirar</Link> |
+                <Link to="/">Home</Link>
+                <Routes>
+                    <Route exact path="/" element={<Home saldo={props.saldo}/>}/>
+                    <Route path="/depositar" element={<Depositar depositar={() => props.botaoDepositaValor()}/>}/>
+                    <Route path="/retirar" element={<Retirar retirar={() => props.botaoRetirarValor()}/>}/>
+                </Routes>
+            </div>
+        </Router>
     );
 }
+
+// <div>
+//     <h1>EAD React Router com Redux</h1>
+//     <p>Saldo atual: {props.contagem}</p>
+//     <br/>
+//     <button onClick={() => props.botaoIncrementa()}>Incrementar Contagem</button>
+//     <br/>
+//     {props.mensagem}
+//     <br/>
+//     <button onClick={() => props.botaoMensagem('Nova mensagem via Redux')}>Atualizar Mensagem</button>
+// </div>;
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

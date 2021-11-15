@@ -1,12 +1,11 @@
-import {INCREMENTA_CONTAGEM, ATUALIZA_MENSAGEM} from './actionsTypes';
+import {DEPOSITAR_VALOR, RETIRAR_VALOR} from './actionsTypes';
 
-const botaoIncrementa = () => ({
-    type: INCREMENTA_CONTAGEM
+const botaoDepositaValor = () => ({
+    type: DEPOSITAR_VALOR
 });
 
-const botaoMensagem = (valor) => ({
-    type: ATUALIZA_MENSAGEM,
-    novoValor: valor
+const botaoRetirarValor = () => ({
+    type: RETIRAR_VALOR
 });
 
-export {botaoIncrementa, botaoMensagem};
+export {botaoDepositaValor, botaoRetirarValor};

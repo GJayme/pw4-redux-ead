@@ -1,8 +1,7 @@
-export function Home() {
+export function Home(props) {
     return (
         <div>
-            <h4>Componente Home</h4>
-            <p>...loren Ipsun...</p>
+            <p>Saldo atual: {props.saldo}</p>
         </div>
     );
 }

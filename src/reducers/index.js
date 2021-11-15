@@ -1,6 +1,6 @@
 import {combineReducers} from 'redux';
-import {contadorReducer} from './contadorReducer';
+import {saldoReducer} from './saldoReducer';
 
 export const Reducers = combineReducers({
-    contador: contadorReducer
+    contador: saldoReducer
 });
